@@ -10,7 +10,7 @@ import { TiposBasicos } from "./typescript/TiposBasicos";
 const App = () => {
   return (
     <div className="mt-2">
-      <h1>Introduccion a typescritps</h1>
+      <h1>Introduccion a TS - React </h1>
       <hr />
       <Login/>
       {/* <ContadorConHook/> */}
