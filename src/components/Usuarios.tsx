@@ -1,20 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import { reqResApi } from "../api/reqRes";
-import { ReqResListado, Usuario } from "../interfaces/reqRes";
-import { useState } from "react";
+import { Usuario } from "../interfaces/reqRes";
+import { useUsuarios } from "../Hooks/useUsuarios";
 
 export const Usuarios = () => {
-  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  /* const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 
   const paginaRef = useRef(1)
   useEffect(() => {
-   /*  reqResApi
-      .get<ReqResListado>("/users")
-      .then((resp) => {
-        //console.log(resp.data.data);
-        setUsuarios(resp.data.data);
-      })
-      .catch(console.log); */
       cargarUsuarios()
   }, []);
 
@@ -34,7 +25,10 @@ export const Usuarios = () => {
     
       
   };
+ */
 
+  //uso de customHooks...
+  const { paginaAnterior, paginaSiguiente, usuarios } = useUsuarios();
   const renderItem = ({
     id,
     first_name,
@@ -75,9 +69,13 @@ export const Usuarios = () => {
         </thead>
         <tbody>{usuarios.map(renderItem)}</tbody>
       </table>
-      <button className="btn btn-primary"
-        onClick={cargarUsuarios}
-      >Siguiente</button>
+      <button className="btn btn-primary" onClick={paginaAnterior}>
+        Anteriores
+      </button>
+      &nbsp;
+      <button className="btn btn-primary" onClick={paginaSiguiente}>
+        Siguiente
+      </button>
     </>
   );
 };
